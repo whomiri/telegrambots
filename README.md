@@ -1,7 +1,7 @@
 # Mixed Telegram Bot Python 
 [[Telegram]](https://telegram.me/themiri)
 
-[[Telethon]([https://docs.telethon.dev]))
+[[Telethon]([https://docs.telethon.dev])
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/whomiri/telegrambots/blob/master/LICENSE)
 
 A simple Telegram Bots in Python
