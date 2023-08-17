@@ -1,4 +1,4 @@
-#The bot searches from anywhere based on your question and sends a screenshot of the call
+#The bot searches from anywhere based on your question and sends a screenshot of the call or send only screenshot
 #Produced by github.com/whomiri, we are against copying and not giving credit when sharing.
 
 from telethon.sync import TelegramClient, events
@@ -7,9 +7,9 @@ from selenium.webdriver.common.keys import Keys
 import requests
 import time
 
-api_id = 'API_ID'
-api_hash = 'API_HASH'
-bot_token = 'BOT_TOKEN'
+api_id = 'API-ID'
+api_hash = 'API-HASH'
+bot_token = 'BOT-TOKEN'
 
 # Starting the Chrome browser driver for Selenium
 driver = webdriver.Chrome()
@@ -20,15 +20,16 @@ client.start(bot_token=bot_token)
 
 @client.on(events.NewMessage(pattern='/start'))
 async def start(event):
-    await event.respond("Hi! I'm a search bot. Example for use;\n'/google/yahoo/bing/duck/yandex query'...")
+    await event.respond("Hi! I'm a search bot. Example for use;\n'/google/yahoo/bing/duck/yandex query'\n\nor '/screenshot https://yourrequest.com'..")
     raise events.StopPropagation
 
 @client.on(events.NewMessage(pattern='/yahoo'))
 async def search(event):
     query = ' '.join(event.raw_text.split()[1:])
-    
+    await event.respond("Please wait...")
+
     # Search yahoo
-    driver.get(f'https://search.yahoo.com/search;_ylt=AwrhekUaAt5kjg8GmHpDDWVH;_ylc=X1MDMTE5NzgwNDg2NwRfcgMyBGZyAwRmcjIDcDpzLHY6c2ZwLG06c2ItdG9wBGdwcmlkAwRuX3JzbHQDMARuX3N1Z2cDMARvcmlnaW4Dc2VhcmNoLnlhaG9vLmNvbQRwb3MDMARwcXN0cgMEcHFzdHJsAzAEcXN0cmwDNQRxdWVyeQNzYWxhbQR0X3N0bXADMTY5MjI3MTE0MQ--?q={query}&fr=sfp&fr2=p%3As%2Cv%3Asfp%2Cm%3Asb-top&iscqry=')
+    driver.get(f'https://search.yahoo.com/search?q={query}')
     
     # Take screenshot
     screenshot_path = f'screenshot_{int(time.time())}.png'
@@ -42,6 +43,7 @@ async def search(event):
 @client.on(events.NewMessage(pattern='/google'))
 async def search(event):
     query = ' '.join(event.raw_text.split()[1:])
+    await event.respond("Please wait...")
     
     driver.get(f'https://www.google.com/search?q={query}')
     
@@ -55,8 +57,9 @@ async def search(event):
 @client.on(events.NewMessage(pattern='/bing'))
 async def search(event):
     query = ' '.join(event.raw_text.split()[1:])
+    await event.respond("Please wait...")
 
-    driver.get(f'https://www.bing.com/search?q={query}&form=QBLH&sp=-1&ghc=1&lq=0&pq={query}&sc=10-7&qs=n&sk=&cvid=E711DCF7C6CF46F38CEB85C9282D5236&ghsh=0&ghacc=0&ghpl=')
+    driver.get(f'https://www.bing.com/search?q={query}')
     
     screenshot_path = f'screenshot_{int(time.time())}.png'
     driver.save_screenshot(screenshot_path)
@@ -68,6 +71,7 @@ async def search(event):
 @client.on(events.NewMessage(pattern='/duck'))
 async def search(event):
     query = ' '.join(event.raw_text.split()[1:])
+    await event.respond("Please wait...")
     
     driver.get(f'https://duckduckgo.com/?q={query}&ia=web')
     
@@ -79,19 +83,35 @@ async def search(event):
     raise events.StopPropagation
 
 #I do not recommend it because there is robot verification on yandex
-@client.on(events.NewMessage(pattern='/yandex'))
+@client.on(events.NewMessage(pattern='/youtube'))
 async def search(event):
     query = ' '.join(event.raw_text.split()[1:])
+    await event.respond("Please wait...")
     
-    #Yandex not getting stuck on robot verification
-    time.sleep(6)
+    time.sleep(2)
 
-    driver.get(f'https://yandex.com/search/?text={query}&lr=10253&search_source=yacom_desktop_common')
+    driver.get(f'https://www.youtube.com/results?search_query={query}')
     
     screenshot_path = f'screenshot_{int(time.time())}.png'
     driver.save_screenshot(screenshot_path)
     
-    await client.send_file(event.chat_id, screenshot_path, caption="Yandex:\n" + query)
+    await client.send_file(event.chat_id, screenshot_path, caption="Youtube:\n" + query)
+    
+    raise events.StopPropagation
+
+@client.on(events.NewMessage(pattern='/screenshot'))
+async def search(event):
+    query = ' '.join(event.raw_text.split()[1:])
+    await event.respond("Please wait...")
+
+    time.sleep(4)
+
+    driver.get(query)
+    
+    screenshot_path = f'screenshot_{int(time.time())}.png'
+    driver.save_screenshot(screenshot_path)
+    
+    await client.send_file(event.chat_id, screenshot_path, caption="Screenshot:\n" + query)
     
     raise events.StopPropagation
 
