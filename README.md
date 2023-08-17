@@ -18,7 +18,9 @@ Just import add the library to your project with one of these options:
 
   1. Using Maven Central Repository:
 
-```git clone https://github.com/whomiri/telegrambots
+```
+git clone https://github.com/whomiri/telegrambots
+
 ```
  then enter the bot you want and download the requirements above, make the adjustments according to you and run -- python3
 
@@ -34,11 +36,6 @@ This library [Telegram bot API](https://core.telegram.org/bots), you can find mo
 
 ## Questions or Suggestions
 For questions and suggestions [TELEGRAM ACC](https://t.me/themiri)
-
-## Intellij
-<p align="center">
-   <a href="https://www.jetbrains.com/?from=TelegramBots"><img src="jetbrains.png" width="75"></a>
-</p>
 
 
 ## License 
