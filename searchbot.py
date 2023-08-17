@@ -1,5 +1,7 @@
 #The bot searches from anywhere based on your question and sends a screenshot of the call or send only screenshot
 #Produced by github.com/whomiri, we are against copying and not giving credit when sharing.
+#Unauthorized theft and public sharing is a license statement.
+#MIT LISENCE
 
 from telethon.sync import TelegramClient, events
 from selenium import webdriver
