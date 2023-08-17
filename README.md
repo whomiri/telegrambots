@@ -1,7 +1,7 @@
 # Mixed Telegram Bot Python 
-[![Telegram]](https://telegram.me/themiri)
+[[Telegram]](https://telegram.me/themiri)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.telegram/telegrambots/badge.svg)](http://mvnrepository.com/artifact/org.telegram/telegrambots)
+[[Telethon]([https://docs.telethon.dev]))
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/whomiri/telegrambots/blob/master/LICENSE)
 
 A simple Telegram Bots in Python
@@ -16,7 +16,7 @@ Both ways are supported, but I recommend long polling method.
 
 Just import add the library to your project with one of these options:
 
-  1. Using Maven Central Repository:
+  1. Using Repository:
 
 ```
 git clone https://github.com/whomiri/telegrambots
